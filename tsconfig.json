@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "./dist",                         /* Pasta de saída para o JavaScript compilado */
+    "rootDir": "./src",                         /* Pasta raiz do código-fonte TypeScript */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true                           /* Gera source maps para facilitar o debug */
+  },
+  "include": ["src/**/*.ts"],                   /* Inclui apenas os arquivos da pasta src no build */
+  "exclude": ["node_modules", "src/**/__tests__"] /* Exclui os testes do build final de produção */
+}
