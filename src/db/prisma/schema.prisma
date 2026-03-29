@@ -24,8 +24,14 @@ model User {
   banned        Boolean?  @default(false)
   banReason     String?
   banExpires    DateTime?
-  sessions      Session[]
-  accounts      Account[]
+
+  sessions   Session[]
+  accounts   Account[]
+  notes      Note[]
+  tags       Tag[]
+  students   Student[]
+  books      Book[]
+  attendance Attendance[]
 
   @@unique([email])
   @@map("user")
@@ -78,4 +84,76 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Note {
+  id          String   @id @default(uuid())
+  content     String
+  date        DateTime
+  createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([createdById])
+  @@map("note")
+}
+
+model Tag {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  students Student[]
+}
+
+model Student {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacherId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tagId     String?
+  tag       Tag?     @relation(fields: [tagId], references: [id], onDelete: SetNull)
+
+  loans      BookLoan[]
+  attendance Attendance[]
+}
+
+model Book {
+  id          String   @id @default(uuid())
+  title       String
+  author      String
+  quantity    Int
+  createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  loans BookLoan[]
+}
+
+model BookLoan {
+  id         String    @id @default(uuid())
+  book       Book      @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  bookId     String
+  student    Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId  String
+  loanDate   DateTime  @default(now())
+  returnDate DateTime?
+}
+
+model Attendance {
+  id        String   @id @default(uuid())
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId String
+  teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacherId String
+  date      DateTime @default(now())
+  status    String
 }
