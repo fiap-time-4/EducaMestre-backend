@@ -7,6 +7,8 @@ import { auth } from "./util/auth";
 
 const app = express()
 
+app.set("trust proxy", true);
+
 app.use(cors({
   origin: [process.env.FRONTEND_ORIGIN || "*", "http://localhost:3000"],
   credentials: true,
@@ -20,7 +22,9 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use(express.json());
 app.use(routes);
 
+
 const PORT = process.env.PORT || 3333;
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

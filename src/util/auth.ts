@@ -10,8 +10,9 @@ export const auth = betterAuth({
     }),
     plugins: [admin()],    
 
-    trustedOrigins: [process.env.FRONTEND_ORIGIN || "*", "http://localhost:3000"],
+    trustedOrigins: [process.env.FRONTEND_ORIGIN || "http://localhost:3000"],
     advanced: {
+        disableCSRFCheck: process.env.NODE_ENV === "development",
         disableOriginCheck: process.env.NODE_ENV === "development",
     },
     secret: process.env.BETTER_AUTH_SECRET,
