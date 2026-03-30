@@ -22,5 +22,8 @@ export const auth = betterAuth({
             clientId: process.env.OAUTH_CLIENT_ID || "",
             clientSecret: process.env.OAUTH_CLIENT_SECRET || "",
         }
-    }
+    },
+    emailAndPassword: {
+        enabled: true,
+    },
 });
