@@ -113,7 +113,7 @@ model Tag {
 model Student {
   id        String   @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String
   teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   teacherId String
   createdAt DateTime @default(now())
