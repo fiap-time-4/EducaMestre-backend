@@ -1,7 +1,6 @@
 import { Router, Request, Response } from "express";
 import { noteRoutes } from "./routes/noteRoutes";
-import { auth } from "./util/auth";
-import { fromNodeHeaders } from "better-auth/node";
+import { tagRoutes } from "./routes/tagRoutes";
 
 const routes = Router();
 
@@ -12,6 +11,7 @@ routes.get('/health', (req: Request, res: Response) => {
 });
 
 routes.use("/notes", noteRoutes());
+routes.use("/tags", tagRoutes());
 
 
 export default routes;
