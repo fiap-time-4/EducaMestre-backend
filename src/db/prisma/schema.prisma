@@ -170,5 +170,4 @@ model Attendance {
   teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   teacherId String
   date      DateTime @default(now())
-  status    String
 }
