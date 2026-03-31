@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { noteRoutes } from "./routes/noteRoutes";
 import { tagRoutes } from "./routes/tagRoutes";
 import { studentRoutes } from "./routes/studentRoutes";
+import { attendanceRoutes} from "./routes/attendanceRoutes"
 
 const routes = Router();
 
@@ -14,6 +15,7 @@ routes.get('/health', (req: Request, res: Response) => {
 routes.use("/notes", noteRoutes());
 routes.use("/tags", tagRoutes());
 routes.use("/students", studentRoutes());
+routes.use("/attendances", attendanceRoutes());
 
 
 export default routes;

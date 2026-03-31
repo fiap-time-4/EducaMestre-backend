@@ -9,7 +9,8 @@ export class AttendanceController {
 
   public createAttendance = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const { studentId, teacherId, date }: CreateAttendanceInput = req.body;
+      const { studentId, date }: CreateAttendanceInput = req.body;
+      const teacherId = req.user.id;
 
       const attendanceSchema = z.object({
         studentId: z.string().min(1, "Student ID is required"),
