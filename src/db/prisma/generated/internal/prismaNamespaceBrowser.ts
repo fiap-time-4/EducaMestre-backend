@@ -59,7 +59,8 @@ export const ModelName = {
   Tag: 'Tag',
   Student: 'Student',
   Book: 'Book',
-  BookLoan: 'BookLoan',
+  Material: 'Material',
+  Loan: 'Loan',
   Attendance: 'Attendance'
 } as const
 
@@ -191,15 +192,29 @@ export const BookScalarFieldEnum = {
 export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
 
 
-export const BookLoanScalarFieldEnum = {
+export const MaterialScalarFieldEnum = {
   id: 'id',
-  bookId: 'bookId',
+  name: 'name',
+  description: 'description',
+  quantity: 'quantity',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
+
+
+export const LoanScalarFieldEnum = {
+  id: 'id',
+  itemType: 'itemType',
+  itemId: 'itemId',
   studentId: 'studentId',
   loanDate: 'loanDate',
   returnDate: 'returnDate'
 } as const
 
-export type BookLoanScalarFieldEnum = (typeof BookLoanScalarFieldEnum)[keyof typeof BookLoanScalarFieldEnum]
+export type LoanScalarFieldEnum = (typeof LoanScalarFieldEnum)[keyof typeof LoanScalarFieldEnum]
 
 
 export const AttendanceScalarFieldEnum = {

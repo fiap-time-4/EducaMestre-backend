@@ -32,6 +32,7 @@ model User {
   students   Student[]
   books      Book[]
   attendance Attendance[]
+  materials  Material[]
 
   @@unique([email])
   @@map("user")
@@ -121,7 +122,7 @@ model Student {
   tagId     String?
   tag       Tag?     @relation(fields: [tagId], references: [id], onDelete: SetNull)
 
-  loans      BookLoan[]
+  loans      Loan[]
   attendance Attendance[]
 }
 
@@ -134,14 +135,28 @@ model Book {
   createdById String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
-  loans BookLoan[]
 }
 
-model BookLoan {
+model Material {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  quantity    Int
+  createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum ItemType {
+  BOOK
+  MATERIAL
+}
+
+model Loan {
   id         String    @id @default(uuid())
-  book       Book      @relation(fields: [bookId], references: [id], onDelete: Cascade)
-  bookId     String
+  itemType   ItemType
+  itemId     String
   student    Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
   studentId  String
   loanDate   DateTime  @default(now())

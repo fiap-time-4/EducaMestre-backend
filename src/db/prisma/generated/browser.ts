@@ -58,10 +58,15 @@ export type Student = Prisma.StudentModel
  */
 export type Book = Prisma.BookModel
 /**
- * Model BookLoan
+ * Model Material
  * 
  */
-export type BookLoan = Prisma.BookLoanModel
+export type Material = Prisma.MaterialModel
+/**
+ * Model Loan
+ * 
+ */
+export type Loan = Prisma.LoanModel
 /**
  * Model Attendance
  * 

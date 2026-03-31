@@ -392,7 +392,8 @@ export const ModelName = {
   Tag: 'Tag',
   Student: 'Student',
   Book: 'Book',
-  BookLoan: 'BookLoan',
+  Material: 'Material',
+  Loan: 'Loan',
   Attendance: 'Attendance'
 } as const
 
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "note" | "tag" | "student" | "book" | "bookLoan" | "attendance"
+    modelProps: "user" | "session" | "account" | "verification" | "note" | "tag" | "student" | "book" | "material" | "loan" | "attendance"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1005,77 +1006,151 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    BookLoan: {
-      payload: Prisma.$BookLoanPayload<ExtArgs>
-      fields: Prisma.BookLoanFieldRefs
+    Material: {
+      payload: Prisma.$MaterialPayload<ExtArgs>
+      fields: Prisma.MaterialFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.BookLoanFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload> | null
+          args: Prisma.MaterialFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.BookLoanFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>
+          args: Prisma.MaterialFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>
         }
         findFirst: {
-          args: Prisma.BookLoanFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload> | null
+          args: Prisma.MaterialFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.BookLoanFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>
+          args: Prisma.MaterialFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>
         }
         findMany: {
-          args: Prisma.BookLoanFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>[]
+          args: Prisma.MaterialFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>[]
         }
         create: {
-          args: Prisma.BookLoanCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>
+          args: Prisma.MaterialCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>
         }
         createMany: {
-          args: Prisma.BookLoanCreateManyArgs<ExtArgs>
+          args: Prisma.MaterialCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.BookLoanCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>[]
+          args: Prisma.MaterialCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>[]
         }
         delete: {
-          args: Prisma.BookLoanDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>
+          args: Prisma.MaterialDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>
         }
         update: {
-          args: Prisma.BookLoanUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>
+          args: Prisma.MaterialUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>
         }
         deleteMany: {
-          args: Prisma.BookLoanDeleteManyArgs<ExtArgs>
+          args: Prisma.MaterialDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.BookLoanUpdateManyArgs<ExtArgs>
+          args: Prisma.MaterialUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.BookLoanUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>[]
+          args: Prisma.MaterialUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>[]
         }
         upsert: {
-          args: Prisma.BookLoanUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookLoanPayload>
+          args: Prisma.MaterialUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialPayload>
         }
         aggregate: {
-          args: Prisma.BookLoanAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBookLoan>
+          args: Prisma.MaterialAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMaterial>
         }
         groupBy: {
-          args: Prisma.BookLoanGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BookLoanGroupByOutputType>[]
+          args: Prisma.MaterialGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MaterialGroupByOutputType>[]
         }
         count: {
-          args: Prisma.BookLoanCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BookLoanCountAggregateOutputType> | number
+          args: Prisma.MaterialCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MaterialCountAggregateOutputType> | number
+        }
+      }
+    }
+    Loan: {
+      payload: Prisma.$LoanPayload<ExtArgs>
+      fields: Prisma.LoanFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LoanFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LoanFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>
+        }
+        findFirst: {
+          args: Prisma.LoanFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LoanFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>
+        }
+        findMany: {
+          args: Prisma.LoanFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>[]
+        }
+        create: {
+          args: Prisma.LoanCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>
+        }
+        createMany: {
+          args: Prisma.LoanCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LoanCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>[]
+        }
+        delete: {
+          args: Prisma.LoanDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>
+        }
+        update: {
+          args: Prisma.LoanUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>
+        }
+        deleteMany: {
+          args: Prisma.LoanDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LoanUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LoanUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>[]
+        }
+        upsert: {
+          args: Prisma.LoanUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanPayload>
+        }
+        aggregate: {
+          args: Prisma.LoanAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLoan>
+        }
+        groupBy: {
+          args: Prisma.LoanGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoanGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LoanCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoanCountAggregateOutputType> | number
         }
       }
     }
@@ -1304,15 +1379,29 @@ export const BookScalarFieldEnum = {
 export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
 
 
-export const BookLoanScalarFieldEnum = {
+export const MaterialScalarFieldEnum = {
   id: 'id',
-  bookId: 'bookId',
+  name: 'name',
+  description: 'description',
+  quantity: 'quantity',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
+
+
+export const LoanScalarFieldEnum = {
+  id: 'id',
+  itemType: 'itemType',
+  itemId: 'itemId',
   studentId: 'studentId',
   loanDate: 'loanDate',
   returnDate: 'returnDate'
 } as const
 
-export type BookLoanScalarFieldEnum = (typeof BookLoanScalarFieldEnum)[keyof typeof BookLoanScalarFieldEnum]
+export type LoanScalarFieldEnum = (typeof LoanScalarFieldEnum)[keyof typeof LoanScalarFieldEnum]
 
 
 export const AttendanceScalarFieldEnum = {
@@ -1402,6 +1491,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ItemType'
+ */
+export type EnumItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ItemType'>
+    
+
+
+/**
+ * Reference to a field of type 'ItemType[]'
+ */
+export type ListEnumItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ItemType[]'>
     
 
 
@@ -1521,7 +1624,8 @@ export type GlobalOmitConfig = {
   tag?: Prisma.TagOmit
   student?: Prisma.StudentOmit
   book?: Prisma.BookOmit
-  bookLoan?: Prisma.BookLoanOmit
+  material?: Prisma.MaterialOmit
+  loan?: Prisma.LoanOmit
   attendance?: Prisma.AttendanceOmit
 }
 

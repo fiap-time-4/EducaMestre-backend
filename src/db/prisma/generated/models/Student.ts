@@ -200,7 +200,7 @@ export type StudentWhereInput = {
   tagId?: Prisma.StringNullableFilter<"Student"> | string | null
   teacher?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tag?: Prisma.XOR<Prisma.TagNullableScalarRelationFilter, Prisma.TagWhereInput> | null
-  loans?: Prisma.BookLoanListRelationFilter
+  loans?: Prisma.LoanListRelationFilter
   attendance?: Prisma.AttendanceListRelationFilter
 }
 
@@ -214,26 +214,26 @@ export type StudentOrderByWithRelationInput = {
   tagId?: Prisma.SortOrderInput | Prisma.SortOrder
   teacher?: Prisma.UserOrderByWithRelationInput
   tag?: Prisma.TagOrderByWithRelationInput
-  loans?: Prisma.BookLoanOrderByRelationAggregateInput
+  loans?: Prisma.LoanOrderByRelationAggregateInput
   attendance?: Prisma.AttendanceOrderByRelationAggregateInput
 }
 
 export type StudentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  email?: string
   AND?: Prisma.StudentWhereInput | Prisma.StudentWhereInput[]
   OR?: Prisma.StudentWhereInput[]
   NOT?: Prisma.StudentWhereInput | Prisma.StudentWhereInput[]
   name?: Prisma.StringFilter<"Student"> | string
+  email?: Prisma.StringFilter<"Student"> | string
   teacherId?: Prisma.StringFilter<"Student"> | string
   createdAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Student"> | Date | string
   tagId?: Prisma.StringNullableFilter<"Student"> | string | null
   teacher?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tag?: Prisma.XOR<Prisma.TagNullableScalarRelationFilter, Prisma.TagWhereInput> | null
-  loans?: Prisma.BookLoanListRelationFilter
+  loans?: Prisma.LoanListRelationFilter
   attendance?: Prisma.AttendanceListRelationFilter
-}, "id" | "email">
+}, "id">
 
 export type StudentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -269,7 +269,7 @@ export type StudentCreateInput = {
   updatedAt?: Date | string
   teacher: Prisma.UserCreateNestedOneWithoutStudentsInput
   tag?: Prisma.TagCreateNestedOneWithoutStudentsInput
-  loans?: Prisma.BookLoanCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanCreateNestedManyWithoutStudentInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutStudentInput
 }
 
@@ -281,7 +281,7 @@ export type StudentUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tagId?: string | null
-  loans?: Prisma.BookLoanUncheckedCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutStudentInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutStudentInput
 }
 
@@ -293,7 +293,7 @@ export type StudentUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teacher?: Prisma.UserUpdateOneRequiredWithoutStudentsNestedInput
   tag?: Prisma.TagUpdateOneWithoutStudentsNestedInput
-  loans?: Prisma.BookLoanUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutStudentNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutStudentNestedInput
 }
 
@@ -305,7 +305,7 @@ export type StudentUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tagId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  loans?: Prisma.BookLoanUncheckedUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutStudentNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutStudentNestedInput
 }
 
@@ -501,7 +501,7 @@ export type StudentCreateWithoutTeacherInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tag?: Prisma.TagCreateNestedOneWithoutStudentsInput
-  loans?: Prisma.BookLoanCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanCreateNestedManyWithoutStudentInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutStudentInput
 }
 
@@ -512,7 +512,7 @@ export type StudentUncheckedCreateWithoutTeacherInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tagId?: string | null
-  loans?: Prisma.BookLoanUncheckedCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutStudentInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutStudentInput
 }
 
@@ -562,7 +562,7 @@ export type StudentCreateWithoutTagInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   teacher: Prisma.UserCreateNestedOneWithoutStudentsInput
-  loans?: Prisma.BookLoanCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanCreateNestedManyWithoutStudentInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutStudentInput
 }
 
@@ -573,7 +573,7 @@ export type StudentUncheckedCreateWithoutTagInput = {
   teacherId: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  loans?: Prisma.BookLoanUncheckedCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutStudentInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutStudentInput
 }
 
@@ -671,7 +671,7 @@ export type StudentCreateWithoutAttendanceInput = {
   updatedAt?: Date | string
   teacher: Prisma.UserCreateNestedOneWithoutStudentsInput
   tag?: Prisma.TagCreateNestedOneWithoutStudentsInput
-  loans?: Prisma.BookLoanCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanCreateNestedManyWithoutStudentInput
 }
 
 export type StudentUncheckedCreateWithoutAttendanceInput = {
@@ -682,7 +682,7 @@ export type StudentUncheckedCreateWithoutAttendanceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tagId?: string | null
-  loans?: Prisma.BookLoanUncheckedCreateNestedManyWithoutStudentInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentCreateOrConnectWithoutAttendanceInput = {
@@ -709,7 +709,7 @@ export type StudentUpdateWithoutAttendanceInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teacher?: Prisma.UserUpdateOneRequiredWithoutStudentsNestedInput
   tag?: Prisma.TagUpdateOneWithoutStudentsNestedInput
-  loans?: Prisma.BookLoanUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentUncheckedUpdateWithoutAttendanceInput = {
@@ -720,7 +720,7 @@ export type StudentUncheckedUpdateWithoutAttendanceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tagId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  loans?: Prisma.BookLoanUncheckedUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentCreateManyTeacherInput = {
@@ -739,7 +739,7 @@ export type StudentUpdateWithoutTeacherInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tag?: Prisma.TagUpdateOneWithoutStudentsNestedInput
-  loans?: Prisma.BookLoanUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutStudentNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutStudentNestedInput
 }
 
@@ -750,7 +750,7 @@ export type StudentUncheckedUpdateWithoutTeacherInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tagId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  loans?: Prisma.BookLoanUncheckedUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutStudentNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutStudentNestedInput
 }
 
@@ -779,7 +779,7 @@ export type StudentUpdateWithoutTagInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   teacher?: Prisma.UserUpdateOneRequiredWithoutStudentsNestedInput
-  loans?: Prisma.BookLoanUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutStudentNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutStudentNestedInput
 }
 
@@ -790,7 +790,7 @@ export type StudentUncheckedUpdateWithoutTagInput = {
   teacherId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  loans?: Prisma.BookLoanUncheckedUpdateManyWithoutStudentNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutStudentNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutStudentNestedInput
 }
 
@@ -832,7 +832,7 @@ export type StudentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
  * StudentCountOutputType without action
  */
 export type StudentCountOutputTypeCountLoansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BookLoanWhereInput
+  where?: Prisma.LoanWhereInput
 }
 
 /**
@@ -914,7 +914,7 @@ export type $StudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     teacher: Prisma.$UserPayload<ExtArgs>
     tag: Prisma.$TagPayload<ExtArgs> | null
-    loans: Prisma.$BookLoanPayload<ExtArgs>[]
+    loans: Prisma.$LoanPayload<ExtArgs>[]
     attendance: Prisma.$AttendancePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1321,7 +1321,7 @@ export interface Prisma__StudentClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   teacher<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tag<T extends Prisma.Student$tagArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$tagArgs<ExtArgs>>): Prisma.Prisma__TagClient<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  loans<T extends Prisma.Student$loansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$loansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookLoanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  loans<T extends Prisma.Student$loansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$loansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendance<T extends Prisma.Student$attendanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Student$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1783,23 +1783,23 @@ export type Student$tagArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
  */
 export type Student$loansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the BookLoan
+   * Select specific fields to fetch from the Loan
    */
-  select?: Prisma.BookLoanSelect<ExtArgs> | null
+  select?: Prisma.LoanSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the BookLoan
+   * Omit specific fields from the Loan
    */
-  omit?: Prisma.BookLoanOmit<ExtArgs> | null
+  omit?: Prisma.LoanOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.BookLoanInclude<ExtArgs> | null
-  where?: Prisma.BookLoanWhereInput
-  orderBy?: Prisma.BookLoanOrderByWithRelationInput | Prisma.BookLoanOrderByWithRelationInput[]
-  cursor?: Prisma.BookLoanWhereUniqueInput
+  include?: Prisma.LoanInclude<ExtArgs> | null
+  where?: Prisma.LoanWhereInput
+  orderBy?: Prisma.LoanOrderByWithRelationInput | Prisma.LoanOrderByWithRelationInput[]
+  cursor?: Prisma.LoanWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.BookLoanScalarFieldEnum | Prisma.BookLoanScalarFieldEnum[]
+  distinct?: Prisma.LoanScalarFieldEnum | Prisma.LoanScalarFieldEnum[]
 }
 
 /**
