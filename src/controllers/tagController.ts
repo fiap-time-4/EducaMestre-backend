@@ -2,6 +2,7 @@ import prisma from "../util/prisma";
 import { Request, Response } from "express";
 import { TagRepository } from "../repositories/tagRepository";
 import { CreateTagInput } from "../interfaces/tagInterfaces";
+import { AppError } from "../util/appError";
 import * as z from "zod";
 
 export class TagController {
@@ -16,17 +17,14 @@ export class TagController {
         name: z.string().min(1, "Name is required"),
       });
 
-      const parsedTag = tagSchema.safeParse({ name });
-      if (!parsedTag.success) {
-        return res.status(400).json({ error: parsedTag.error });
-      }
+      tagSchema.parse({ name });
 
       const tag = await this.tagRepository.create({ name, createdById });
       return res.status(201).json(tag);
 
     } catch (error) {
       console.error("Error creating tag:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 
@@ -49,35 +47,28 @@ export class TagController {
         createdById: z.string()
       });
 
-      const parsedOptions = getOptionsSchema.safeParse(getOptions);
-      if (!parsedOptions.success) {
-        return res.status(400).json({ error: parsedOptions.error });
-      }
+      const parsedOptions = getOptionsSchema.parse(getOptions);
 
-      const tags = await this.tagRepository.get(parsedOptions.data);
+      const tags = await this.tagRepository.get(parsedOptions);
       return res.status(200).json(tags);
     } catch (error) {
       console.error("Error fetching tags:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 
   public deleteTag = async (req: Request, res: Response): Promise<Response> => {
     try {
       const { id } = req.params;
-      const createdById = req.user.id;
 
       const idSchema = z.string().min(1, "ID is required");
-      const parsedId = idSchema.safeParse(id);
-      if (!parsedId.success) {
-        return res.status(400).json({ error: parsedId.error });
-      }
+      const parsedId = idSchema.parse(id);
 
-      await this.tagRepository.delete(parsedId.data, createdById);
+      await this.tagRepository.delete(parsedId);
       return res.status(204).send();
     } catch (error) {
       console.error("Error deleting tag:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 }

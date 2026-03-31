@@ -2,6 +2,7 @@ import prisma from "../util/prisma";
 import { Request, Response } from "express";
 import { AttendanceRepository } from "../repositories/attendanceRepository";
 import { CreateAttendanceInput } from "../interfaces/attendanceInterfaces";
+import { AppError } from "../util/appError";
 import * as z from "zod";
 
 export class AttendanceController {
@@ -15,20 +16,17 @@ export class AttendanceController {
       const attendanceSchema = z.object({
         studentId: z.string().min(1, "Student ID is required"),
         teacherId: z.string().min(1, "Teacher ID is required"),
-        date: z.string().min(1, "Date is required"),
+        date: z.date(),
       });
 
-      const parsedAttendance = attendanceSchema.safeParse({ studentId, teacherId, date });
-      if (!parsedAttendance.success) {
-        return res.status(400).json({ error: parsedAttendance.error });
-      }
+      const parsedAttendance = attendanceSchema.parse({ studentId, teacherId, date: new Date(date) });
 
-      const attendance = await this.attendanceRepository.create({ studentId, teacherId, date });
+      const attendance = await this.attendanceRepository.create(parsedAttendance);
       return res.status(201).json(attendance);
 
     } catch (error) {
       console.error("Error creating attendance:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 
@@ -55,16 +53,13 @@ export class AttendanceController {
         teacherId: z.string().optional()
       });
 
-      const parsedOptions = getOptionsSchema.safeParse(getOptions);
-      if (!parsedOptions.success) {
-        return res.status(400).json({ error: parsedOptions.error });
-      }
+      const parsedOptions = getOptionsSchema.parse(getOptions);
 
-      const attendance = await this.attendanceRepository.get(parsedOptions.data);
+      const attendance = await this.attendanceRepository.get(parsedOptions);
       return res.status(200).json(attendance);
     } catch (error) {
       console.error("Error fetching attendance:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 
@@ -73,16 +68,13 @@ export class AttendanceController {
       const { id } = req.params;
 
       const idSchema = z.string().min(1, "ID is required");
-      const parsedId = idSchema.safeParse(id);
-      if (!parsedId.success) {
-        return res.status(400).json({ error: parsedId.error });
-      }
+      const parsedId = idSchema.parse(id);
 
-      await this.attendanceRepository.delete(parsedId.data);
+      await this.attendanceRepository.delete(parsedId);
       return res.status(204).send();
     } catch (error) {
       console.error("Error deleting attendance:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 }

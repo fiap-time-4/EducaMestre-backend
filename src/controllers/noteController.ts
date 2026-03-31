@@ -2,6 +2,7 @@ import prisma from "../util/prisma";
 import { Request, Response } from "express";
 import { NoteRepository } from "../repositories/noteRepository";
 import { CreateNoteInput } from "../interfaces/noteInterfaces";
+import { AppError } from "../util/appError";
 import * as z from "zod";
 
 export class NoteController {
@@ -17,17 +18,14 @@ export class NoteController {
         date: z.coerce.date({ message: "Invalid date format" }),
       });
 
-      const parsedNote = noteSchema.safeParse({ content, date });
-      if (!parsedNote.success) {
-        return res.status(400).json({ error: parsedNote.error });
-      }
+      noteSchema.parse({ content, date });
 
       const note = await this.noteRepository.create({ content, date, createdById });
       return res.status(201).json(note);
 
     } catch (error) {
       console.error("Error creating note:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 
@@ -52,16 +50,13 @@ export class NoteController {
         createdById: z.string()
       });
 
-      const parsedOptions = getOptionsSchema.safeParse(getOptions);
-      if (!parsedOptions.success) {
-        return res.status(400).json({ error: parsedOptions.error });
-      }
+      const parsedOptions = getOptionsSchema.parse(getOptions);
 
-      const notes = await this.noteRepository.get(parsedOptions.data);
+      const notes = await this.noteRepository.get(parsedOptions);
       return res.status(200).json(notes);
     } catch (error) {
       console.error("Error fetching notes:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
 }

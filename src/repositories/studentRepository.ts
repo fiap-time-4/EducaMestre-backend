@@ -11,7 +11,40 @@ interface GetOptions {
 
 export class StudentRepository {
 
+  async verifyStudentExists(id: string): Promise<boolean> {
+
+    const existingStudent = await prisma.student.findUnique({
+        where: {
+          id
+        }
+    });
+
+    return !!existingStudent; 
+
+  }
+
+  async verifyTagExists(tagId: string): Promise<boolean> {
+
+    const existingTag = await prisma.tag.findUnique({
+        where: {
+          id: tagId
+        }
+    });
+  
+    return !!existingTag;
+
+  }
+    
+
   async create({ name, email, teacherId, tagId }: CreateStudentInput): Promise<Student> {
+
+    if (tagId) {
+      const tagExists = await this.verifyTagExists(tagId);
+      if (!tagExists) {
+        throw new Error("Tag not found");
+      }
+    }
+
     const newStudent = await prisma.student.create({
       data: {
         name,
@@ -87,45 +120,42 @@ export class StudentRepository {
 
   }
 
-  async delete(id: string, teacherId: string): Promise<void> {
-    const student = await prisma.student.findFirst({
-      where: {
-        id,
-        teacherId
-      }
-    });
+  async delete(id: string): Promise<void> {
+    const studentExists = await this.verifyStudentExists(id);
 
-    if (!student) {
+    if (!studentExists) {
       throw new Error("Student not found");
     }
 
     await prisma.student.delete({
       where: {
-        id: student.id
+        id
       }
     });
   }
 
-  async update(id: string, teacherId: string, data: UpdateStudentInput): Promise<Student> {
-    const student = await prisma.student.findFirst({
-      where: {
-        id,
-        teacherId
-      }
-    });
+  async update(id: string, data: UpdateStudentInput): Promise<Student> {
+    const studentExists = await this.verifyStudentExists(id);
 
-    if (!student) {
+    if (!studentExists) {
       throw new Error("Student not found");
+    }
+
+    if (data.tagId) {
+      const tagExists = await this.verifyTagExists(data.tagId);
+      if (!tagExists) {
+        throw new Error("Tag not found");
+      }
     }
 
     const updatedStudent = await prisma.student.update({
       where: {
-        id: student.id
+        id
       },
       data: {
-        name: data.name ?? student.name,
-        email: data.email ?? student.email,
-        tagId: data.tagId ?? student.tagId
+        name: data.name,
+        email: data.email,
+        tagId: data.tagId,
       },
       include: {
         tag: true

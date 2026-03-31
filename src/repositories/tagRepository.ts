@@ -10,6 +10,17 @@ interface GetOptions {
 
 export class TagRepository {
 
+  async verifyTagExists(tagId: string): Promise<boolean> {
+
+    const existingTag = await prisma.tag.findUnique({
+        where: {
+          id: tagId
+        }
+    });
+
+    return !!existingTag;
+  }
+
   async create({ name, createdById }: CreateTagInput): Promise<Tag> {
     const newTag = await prisma.tag.create({
       data: {
@@ -63,21 +74,16 @@ export class TagRepository {
 
   }
 
-  async delete(id: string, createdById: string): Promise<void> {
-    const tag = await prisma.tag.findFirst({
-      where: {
-        id,
-        createdById
-      }
-    });
+  async delete(id: string): Promise<void> {
+    const tagExists = await this.verifyTagExists(id);
 
-    if (!tag) {
+    if (!tagExists) {
       throw new Error("Tag not found");
     }
 
     await prisma.tag.delete({
       where: {
-        id: tag.id
+        id
       }
     });
   }
