@@ -6,6 +6,7 @@ interface GetOptions {
   take?: number;
   id?: string;
   teacherId?: string;
+  tagId?: string;
 }
 
 export class StudentRepository {
@@ -38,7 +39,7 @@ export class StudentRepository {
     return student;
   }
 
-  async get({ skip, take, id, teacherId }: GetOptions): Promise<ReturnStudent | ReturnStudent[]> {
+  async get({ skip, take, id, teacherId, tagId }: GetOptions): Promise<ReturnStudent | ReturnStudent[]> {
 
     const fetchedStudents = await prisma.student.findMany({
       skip,
@@ -48,7 +49,9 @@ export class StudentRepository {
       },
       where: {
         id ,
-        teacherId
+        teacherId,
+        tagId
+
       },
       include: {
         tag: true
@@ -58,7 +61,8 @@ export class StudentRepository {
     const count = await prisma.student.count({
       where: {
         id ,
-        teacherId
+        teacherId,
+        tagId
       }
     });
 

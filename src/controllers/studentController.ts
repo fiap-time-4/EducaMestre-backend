@@ -35,13 +35,14 @@ export class StudentController {
 
   public getStudents = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const { skip, take, id } = req.query;
+      const { skip, take, id, tagId } = req.query;
       const teacherId = req.user.id;
       
       const getOptions = {
         skip: skip ? parseInt(skip as string, 10) : undefined,
         take: take ? parseInt(take as string, 10) : undefined,
         id: id as string | undefined,
+        tagId: tagId as string | undefined,
         teacherId
       };
 
@@ -49,7 +50,8 @@ export class StudentController {
         id: z.string().optional(),
         skip: z.number().optional(),
         take: z.number().optional(),
-        teacherId: z.string()
+        teacherId: z.string(),
+        tagId: z.string().optional()
       });
 
       const parsedOptions = getOptionsSchema.safeParse(getOptions);
