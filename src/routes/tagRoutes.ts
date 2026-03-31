@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { TagController } from "../controllers/tagController";
 import { TagRepository } from "../repositories/tagRepository";
-import { ensureAuthenticated } from "../middlewares/ensure_auth" ;
+import { ensureAuthenticated } from "../middlewares/ensureAuth" ;
 
 const tagRepository = new TagRepository();
 const tagController = new TagController(tagRepository);

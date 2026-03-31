@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { StudentController } from "../controllers/studentController";
 import { StudentRepository } from "../repositories/studentRepository";
-import { ensureAuthenticated } from "../middlewares/ensure_auth" ;
+import { ensureAuthenticated } from "../middlewares/ensureAuth" ;
 
 const studentRepository = new StudentRepository();
 const studentController = new StudentController(studentRepository);

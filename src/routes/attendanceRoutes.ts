@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AttendanceController } from "../controllers/attendanceController";
 import { AttendanceRepository } from "../repositories/attendanceRepository";
-import { ensureAuthenticated } from "../middlewares/ensure_auth" ;
+import { ensureAuthenticated } from "../middlewares/ensureAuth" ;
 
 const attendanceRepository = new AttendanceRepository();
 const attendanceController = new AttendanceController(attendanceRepository);
