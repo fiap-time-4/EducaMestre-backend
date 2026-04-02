@@ -23,3 +23,12 @@ export const ItemType = {
 } as const
 
 export type ItemType = (typeof ItemType)[keyof typeof ItemType]
+
+
+export const LoanStatus = {
+  ACTIVE: 'ACTIVE',
+  RETURNED: 'RETURNED',
+  OVERDUE: 'OVERDUE'
+} as const
+
+export type LoanStatus = (typeof LoanStatus)[keyof typeof LoanStatus]

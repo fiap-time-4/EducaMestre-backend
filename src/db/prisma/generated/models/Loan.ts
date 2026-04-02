@@ -31,6 +31,7 @@ export type LoanMinAggregateOutputType = {
   studentId: string | null
   loanDate: Date | null
   returnDate: Date | null
+  status: $Enums.LoanStatus | null
 }
 
 export type LoanMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type LoanMaxAggregateOutputType = {
   studentId: string | null
   loanDate: Date | null
   returnDate: Date | null
+  status: $Enums.LoanStatus | null
 }
 
 export type LoanCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type LoanCountAggregateOutputType = {
   studentId: number
   loanDate: number
   returnDate: number
+  status: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type LoanMinAggregateInputType = {
   studentId?: true
   loanDate?: true
   returnDate?: true
+  status?: true
 }
 
 export type LoanMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type LoanMaxAggregateInputType = {
   studentId?: true
   loanDate?: true
   returnDate?: true
+  status?: true
 }
 
 export type LoanCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type LoanCountAggregateInputType = {
   studentId?: true
   loanDate?: true
   returnDate?: true
+  status?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type LoanGroupByOutputType = {
   studentId: string
   loanDate: Date
   returnDate: Date | null
+  status: $Enums.LoanStatus
   _count: LoanCountAggregateOutputType | null
   _min: LoanMinAggregateOutputType | null
   _max: LoanMaxAggregateOutputType | null
@@ -190,6 +197,7 @@ export type LoanWhereInput = {
   studentId?: Prisma.StringFilter<"Loan"> | string
   loanDate?: Prisma.DateTimeFilter<"Loan"> | Date | string
   returnDate?: Prisma.DateTimeNullableFilter<"Loan"> | Date | string | null
+  status?: Prisma.EnumLoanStatusFilter<"Loan"> | $Enums.LoanStatus
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
 }
 
@@ -200,6 +208,7 @@ export type LoanOrderByWithRelationInput = {
   studentId?: Prisma.SortOrder
   loanDate?: Prisma.SortOrder
   returnDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   student?: Prisma.StudentOrderByWithRelationInput
 }
 
@@ -213,6 +222,7 @@ export type LoanWhereUniqueInput = Prisma.AtLeast<{
   studentId?: Prisma.StringFilter<"Loan"> | string
   loanDate?: Prisma.DateTimeFilter<"Loan"> | Date | string
   returnDate?: Prisma.DateTimeNullableFilter<"Loan"> | Date | string | null
+  status?: Prisma.EnumLoanStatusFilter<"Loan"> | $Enums.LoanStatus
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
 }, "id">
 
@@ -223,6 +233,7 @@ export type LoanOrderByWithAggregationInput = {
   studentId?: Prisma.SortOrder
   loanDate?: Prisma.SortOrder
   returnDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   _count?: Prisma.LoanCountOrderByAggregateInput
   _max?: Prisma.LoanMaxOrderByAggregateInput
   _min?: Prisma.LoanMinOrderByAggregateInput
@@ -238,6 +249,7 @@ export type LoanScalarWhereWithAggregatesInput = {
   studentId?: Prisma.StringWithAggregatesFilter<"Loan"> | string
   loanDate?: Prisma.DateTimeWithAggregatesFilter<"Loan"> | Date | string
   returnDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Loan"> | Date | string | null
+  status?: Prisma.EnumLoanStatusWithAggregatesFilter<"Loan"> | $Enums.LoanStatus
 }
 
 export type LoanCreateInput = {
@@ -246,6 +258,7 @@ export type LoanCreateInput = {
   itemId: string
   loanDate?: Date | string
   returnDate?: Date | string | null
+  status?: $Enums.LoanStatus
   student: Prisma.StudentCreateNestedOneWithoutLoansInput
 }
 
@@ -256,6 +269,7 @@ export type LoanUncheckedCreateInput = {
   studentId: string
   loanDate?: Date | string
   returnDate?: Date | string | null
+  status?: $Enums.LoanStatus
 }
 
 export type LoanUpdateInput = {
@@ -264,6 +278,7 @@ export type LoanUpdateInput = {
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
   student?: Prisma.StudentUpdateOneRequiredWithoutLoansNestedInput
 }
 
@@ -274,6 +289,7 @@ export type LoanUncheckedUpdateInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
 }
 
 export type LoanCreateManyInput = {
@@ -283,6 +299,7 @@ export type LoanCreateManyInput = {
   studentId: string
   loanDate?: Date | string
   returnDate?: Date | string | null
+  status?: $Enums.LoanStatus
 }
 
 export type LoanUpdateManyMutationInput = {
@@ -291,6 +308,7 @@ export type LoanUpdateManyMutationInput = {
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
 }
 
 export type LoanUncheckedUpdateManyInput = {
@@ -300,6 +318,7 @@ export type LoanUncheckedUpdateManyInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
 }
 
 export type LoanListRelationFilter = {
@@ -319,6 +338,7 @@ export type LoanCountOrderByAggregateInput = {
   studentId?: Prisma.SortOrder
   loanDate?: Prisma.SortOrder
   returnDate?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type LoanMaxOrderByAggregateInput = {
@@ -328,6 +348,7 @@ export type LoanMaxOrderByAggregateInput = {
   studentId?: Prisma.SortOrder
   loanDate?: Prisma.SortOrder
   returnDate?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type LoanMinOrderByAggregateInput = {
@@ -337,6 +358,7 @@ export type LoanMinOrderByAggregateInput = {
   studentId?: Prisma.SortOrder
   loanDate?: Prisma.SortOrder
   returnDate?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type LoanCreateNestedManyWithoutStudentInput = {
@@ -385,12 +407,17 @@ export type EnumItemTypeFieldUpdateOperationsInput = {
   set?: $Enums.ItemType
 }
 
+export type EnumLoanStatusFieldUpdateOperationsInput = {
+  set?: $Enums.LoanStatus
+}
+
 export type LoanCreateWithoutStudentInput = {
   id?: string
   itemType: $Enums.ItemType
   itemId: string
   loanDate?: Date | string
   returnDate?: Date | string | null
+  status?: $Enums.LoanStatus
 }
 
 export type LoanUncheckedCreateWithoutStudentInput = {
@@ -399,6 +426,7 @@ export type LoanUncheckedCreateWithoutStudentInput = {
   itemId: string
   loanDate?: Date | string
   returnDate?: Date | string | null
+  status?: $Enums.LoanStatus
 }
 
 export type LoanCreateOrConnectWithoutStudentInput = {
@@ -437,6 +465,7 @@ export type LoanScalarWhereInput = {
   studentId?: Prisma.StringFilter<"Loan"> | string
   loanDate?: Prisma.DateTimeFilter<"Loan"> | Date | string
   returnDate?: Prisma.DateTimeNullableFilter<"Loan"> | Date | string | null
+  status?: Prisma.EnumLoanStatusFilter<"Loan"> | $Enums.LoanStatus
 }
 
 export type LoanCreateManyStudentInput = {
@@ -445,6 +474,7 @@ export type LoanCreateManyStudentInput = {
   itemId: string
   loanDate?: Date | string
   returnDate?: Date | string | null
+  status?: $Enums.LoanStatus
 }
 
 export type LoanUpdateWithoutStudentInput = {
@@ -453,6 +483,7 @@ export type LoanUpdateWithoutStudentInput = {
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
 }
 
 export type LoanUncheckedUpdateWithoutStudentInput = {
@@ -461,6 +492,7 @@ export type LoanUncheckedUpdateWithoutStudentInput = {
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
 }
 
 export type LoanUncheckedUpdateManyWithoutStudentInput = {
@@ -469,6 +501,7 @@ export type LoanUncheckedUpdateManyWithoutStudentInput = {
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   loanDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   returnDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumLoanStatusFieldUpdateOperationsInput | $Enums.LoanStatus
 }
 
 
@@ -480,6 +513,7 @@ export type LoanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   studentId?: boolean
   loanDate?: boolean
   returnDate?: boolean
+  status?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loan"]>
 
@@ -490,6 +524,7 @@ export type LoanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   studentId?: boolean
   loanDate?: boolean
   returnDate?: boolean
+  status?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loan"]>
 
@@ -500,6 +535,7 @@ export type LoanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   studentId?: boolean
   loanDate?: boolean
   returnDate?: boolean
+  status?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loan"]>
 
@@ -510,9 +546,10 @@ export type LoanSelectScalar = {
   studentId?: boolean
   loanDate?: boolean
   returnDate?: boolean
+  status?: boolean
 }
 
-export type LoanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "itemType" | "itemId" | "studentId" | "loanDate" | "returnDate", ExtArgs["result"]["loan"]>
+export type LoanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "itemType" | "itemId" | "studentId" | "loanDate" | "returnDate" | "status", ExtArgs["result"]["loan"]>
 export type LoanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
 }
@@ -535,6 +572,7 @@ export type $LoanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     studentId: string
     loanDate: Date
     returnDate: Date | null
+    status: $Enums.LoanStatus
   }, ExtArgs["result"]["loan"]>
   composites: {}
 }
@@ -965,6 +1003,7 @@ export interface LoanFieldRefs {
   readonly studentId: Prisma.FieldRef<"Loan", 'String'>
   readonly loanDate: Prisma.FieldRef<"Loan", 'DateTime'>
   readonly returnDate: Prisma.FieldRef<"Loan", 'DateTime'>
+  readonly status: Prisma.FieldRef<"Loan", 'LoanStatus'>
 }
     
 

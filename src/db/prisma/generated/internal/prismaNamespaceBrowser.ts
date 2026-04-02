@@ -212,7 +212,8 @@ export const LoanScalarFieldEnum = {
   itemId: 'itemId',
   studentId: 'studentId',
   loanDate: 'loanDate',
-  returnDate: 'returnDate'
+  returnDate: 'returnDate',
+  status: 'status'
 } as const
 
 export type LoanScalarFieldEnum = (typeof LoanScalarFieldEnum)[keyof typeof LoanScalarFieldEnum]

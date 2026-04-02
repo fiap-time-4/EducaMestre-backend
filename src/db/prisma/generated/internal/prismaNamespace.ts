@@ -1399,7 +1399,8 @@ export const LoanScalarFieldEnum = {
   itemId: 'itemId',
   studentId: 'studentId',
   loanDate: 'loanDate',
-  returnDate: 'returnDate'
+  returnDate: 'returnDate',
+  status: 'status'
 } as const
 
 export type LoanScalarFieldEnum = (typeof LoanScalarFieldEnum)[keyof typeof LoanScalarFieldEnum]
@@ -1519,6 +1520,20 @@ export type EnumItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'ItemType[]'
  */
 export type ListEnumItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ItemType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanStatus'
+ */
+export type EnumLoanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanStatus[]'
+ */
+export type ListEnumLoanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanStatus[]'>
     
 
 

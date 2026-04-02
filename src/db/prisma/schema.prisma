@@ -159,14 +159,21 @@ enum ItemType {
   MATERIAL
 }
 
+enum LoanStatus {
+  ACTIVE
+  RETURNED
+  OVERDUE
+}
+
 model Loan {
-  id         String    @id @default(uuid())
+  id         String     @id @default(uuid())
   itemType   ItemType
   itemId     String
-  student    Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
   studentId  String
-  loanDate   DateTime  @default(now())
+  loanDate   DateTime   @default(now())
   returnDate DateTime?
+  status     LoanStatus @default(ACTIVE)
 }
 
 model Attendance {
