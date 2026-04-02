@@ -7,16 +7,18 @@ interface GetOptions {
   id?: string;
   date?: Date;
   createdById?: string;
+  type?: 'REMINDER' | 'NOTE';
 }
 
 export class NoteRepository {
 
-  async create({ content, date, createdById }: CreateNoteInput): Promise<Note> {
+  async create({ content, date, createdById, type }: CreateNoteInput): Promise<Note> {
     const newNote = await prisma.note.create({
       data: {
         content,
         date,
-        createdById
+        createdById,
+        type
       }
     });
 
@@ -24,13 +26,14 @@ export class NoteRepository {
       id: newNote.id,
       content: newNote.content,
       date: newNote.date,
-      createdById: newNote.createdById
+      createdById: newNote.createdById,
+      type: newNote.type
     };
 
     return note;
   }
 
-  async get({ skip, take, id, date, createdById }: GetOptions): Promise<ReturnNote | ReturnNote[]> {
+  async get({ skip, take, id, date, createdById, type }: GetOptions): Promise<ReturnNote | ReturnNote[]> {
 
     const fetchedNotes = await prisma.note.findMany({
       skip,
@@ -41,7 +44,8 @@ export class NoteRepository {
       where: {
         id ,
         date,
-        createdById
+        createdById,
+        type
       }
     });
 
@@ -49,7 +53,8 @@ export class NoteRepository {
       where: {
         id ,
         date,
-        createdById
+        createdById,
+        type
       }
     });
 
@@ -57,7 +62,8 @@ export class NoteRepository {
       id: note.id,
       content: note.content,
       date: note.date,
-      createdById: note.createdById
+      createdById: note.createdById,
+      type: note.type
     }));
 
     notes = Array.isArray(notes) && notes.length === 1 ? notes[0] : notes;
@@ -66,6 +72,18 @@ export class NoteRepository {
     return { note: notes,
       count
     };
+
+  }
+
+  async count({ createdById, type }: GetOptions): Promise<number> {
+    const count = await prisma.note.count({
+      where: {
+        createdById,
+        type
+      }
+    });
+
+    return count;
 
   }
 }

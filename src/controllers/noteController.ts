@@ -10,17 +10,18 @@ export class NoteController {
 
   public createNote = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const { content, date }: CreateNoteInput = req.body;
+      const { content, date, type }: CreateNoteInput = req.body;
       const createdById = req.user.id;
 
       const noteSchema = z.object({
         content: z.string().min(1, "Content is required"),
         date: z.coerce.date({ message: "Invalid date format" }),
+        type: z.enum(['REMINDER', 'NOTE'])
       });
 
-      noteSchema.parse({ content, date });
+      noteSchema.parse({ content, date, type });
 
-      const note = await this.noteRepository.create({ content, date, createdById });
+      const note = await this.noteRepository.create({ content, date, createdById, type });
       return res.status(201).json(note);
 
     } catch (error) {
@@ -31,7 +32,7 @@ export class NoteController {
 
   public getNotes = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const { skip, take, id, date } = req.query;
+      const { skip, take, id, date, type } = req.query;
       const createdById = req.user.id;
       
       const getOptions = {
@@ -39,7 +40,8 @@ export class NoteController {
         take: take ? parseInt(take as string, 10) : undefined,
         id: id as string | undefined,
         date: date ? new Date(date as string) : undefined,
-        createdById
+        createdById,
+        type: type as 'REMINDER' | 'NOTE' | undefined
       };
 
       const getOptionsSchema = z.object({
@@ -47,7 +49,8 @@ export class NoteController {
         skip: z.number().optional(),
         take: z.number().optional(),
         date: z.date().optional(),
-        createdById: z.string()
+        createdById: z.string(),
+        type: z.enum(['REMINDER', 'NOTE']).optional()
       });
 
       const parsedOptions = getOptionsSchema.parse(getOptions);
@@ -56,6 +59,29 @@ export class NoteController {
       return res.status(200).json(notes);
     } catch (error) {
       console.error("Error fetching notes:", error);
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
+    }
+  }
+
+  public countNotes = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { type } = req.query;
+      const createdById = req.user.id;
+      const countOptions = {
+        createdById,
+        type: type as 'REMINDER' | 'NOTE' | undefined
+      };
+      const countOptionsSchema = z.object({
+        createdById: z.string(),
+        type: z.enum(['REMINDER', 'NOTE']).optional()
+      });
+      const parsedCountOptions = countOptionsSchema.parse(countOptions);
+
+      const count = await this.noteRepository.count(parsedCountOptions);
+      return res.status(200).json({ count });
+    }
+    catch (error) {
+      console.error("Error counting notes:", error);
       throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }

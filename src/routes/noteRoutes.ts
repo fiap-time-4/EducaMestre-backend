@@ -11,6 +11,7 @@ export function noteRoutes(): Router {
 
   routes.post("/", ensureAuthenticated, noteController.createNote);
   routes.get("/", ensureAuthenticated, noteController.getNotes);
+  routes.get("/count", ensureAuthenticated, noteController.countNotes);
 
   return routes;
 
