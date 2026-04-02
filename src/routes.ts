@@ -2,7 +2,9 @@ import { Router, Request, Response } from "express";
 import { noteRoutes } from "./routes/noteRoutes";
 import { tagRoutes } from "./routes/tagRoutes";
 import { studentRoutes } from "./routes/studentRoutes";
-import { attendanceRoutes} from "./routes/attendanceRoutes"
+import { attendanceRoutes} from "./routes/attendanceRoutes";
+import { bookRoutes } from "./routes/boookRoutes";
+import { materialRoutes } from "./routes/materialRoutes";
 
 const routes = Router();
 
@@ -16,6 +18,8 @@ routes.use("/notes", noteRoutes());
 routes.use("/tags", tagRoutes());
 routes.use("/students", studentRoutes());
 routes.use("/attendances", attendanceRoutes());
+routes.use("/books", bookRoutes());
+routes.use("/materials", materialRoutes());
 
 
 export default routes;
