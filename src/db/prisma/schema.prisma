@@ -33,6 +33,7 @@ model User {
   books      Book[]
   attendance Attendance[]
   materials  Material[]
+  loans      Loan[]
 
   @@unique([email])
   @@map("user")
@@ -166,14 +167,16 @@ enum LoanStatus {
 }
 
 model Loan {
-  id         String     @id @default(uuid())
-  itemType   ItemType
-  itemId     String
-  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  studentId  String
-  loanDate   DateTime   @default(now())
-  returnDate DateTime?
-  status     LoanStatus @default(ACTIVE)
+  id          String     @id @default(uuid())
+  itemType    ItemType
+  itemId      String
+  student     Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId   String
+  loanDate    DateTime   @default(now())
+  returnDate  DateTime?
+  status      LoanStatus @default(ACTIVE)
+  createdBy   User       @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdById String
 }
 
 model Attendance {

@@ -238,6 +238,7 @@ export type UserWhereInput = {
   books?: Prisma.BookListRelationFilter
   attendance?: Prisma.AttendanceListRelationFilter
   materials?: Prisma.MaterialListRelationFilter
+  loans?: Prisma.LoanListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -260,6 +261,7 @@ export type UserOrderByWithRelationInput = {
   books?: Prisma.BookOrderByRelationAggregateInput
   attendance?: Prisma.AttendanceOrderByRelationAggregateInput
   materials?: Prisma.MaterialOrderByRelationAggregateInput
+  loans?: Prisma.LoanOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +287,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   books?: Prisma.BookListRelationFilter
   attendance?: Prisma.AttendanceListRelationFilter
   materials?: Prisma.MaterialListRelationFilter
+  loans?: Prisma.LoanListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -341,6 +344,7 @@ export type UserCreateInput = {
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -363,6 +367,7 @@ export type UserUncheckedCreateInput = {
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -385,6 +390,7 @@ export type UserUpdateInput = {
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -407,6 +413,7 @@ export type UserUncheckedUpdateInput = {
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -620,6 +627,20 @@ export type UserUpdateOneRequiredWithoutMaterialsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMaterialsInput, Prisma.UserUpdateWithoutMaterialsInput>, Prisma.UserUncheckedUpdateWithoutMaterialsInput>
 }
 
+export type UserCreateNestedOneWithoutLoansInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLoansInput, Prisma.UserUncheckedCreateWithoutLoansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLoansInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLoansNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLoansInput, Prisma.UserUncheckedCreateWithoutLoansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLoansInput
+  upsert?: Prisma.UserUpsertWithoutLoansInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLoansInput, Prisma.UserUpdateWithoutLoansInput>, Prisma.UserUncheckedUpdateWithoutLoansInput>
+}
+
 export type UserCreateNestedOneWithoutAttendanceInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAttendanceInput, Prisma.UserUncheckedCreateWithoutAttendanceInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAttendanceInput
@@ -653,6 +674,7 @@ export type UserCreateWithoutSessionsInput = {
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -674,6 +696,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -711,6 +734,7 @@ export type UserUpdateWithoutSessionsInput = {
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -732,6 +756,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -753,6 +778,7 @@ export type UserCreateWithoutAccountsInput = {
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -774,6 +800,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -811,6 +838,7 @@ export type UserUpdateWithoutAccountsInput = {
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -832,6 +860,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -853,6 +882,7 @@ export type UserCreateWithoutNotesInput = {
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -874,6 +904,7 @@ export type UserUncheckedCreateWithoutNotesInput = {
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -911,6 +942,7 @@ export type UserUpdateWithoutNotesInput = {
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -932,6 +964,7 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutTagsInput = {
@@ -953,6 +986,7 @@ export type UserCreateWithoutTagsInput = {
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutTagsInput = {
@@ -974,6 +1008,7 @@ export type UserUncheckedCreateWithoutTagsInput = {
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutTagsInput = {
@@ -1011,6 +1046,7 @@ export type UserUpdateWithoutTagsInput = {
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagsInput = {
@@ -1032,6 +1068,7 @@ export type UserUncheckedUpdateWithoutTagsInput = {
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutStudentsInput = {
@@ -1053,6 +1090,7 @@ export type UserCreateWithoutStudentsInput = {
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutStudentsInput = {
@@ -1074,6 +1112,7 @@ export type UserUncheckedCreateWithoutStudentsInput = {
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutStudentsInput = {
@@ -1111,6 +1150,7 @@ export type UserUpdateWithoutStudentsInput = {
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentsInput = {
@@ -1132,6 +1172,7 @@ export type UserUncheckedUpdateWithoutStudentsInput = {
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutBooksInput = {
@@ -1153,6 +1194,7 @@ export type UserCreateWithoutBooksInput = {
   students?: Prisma.StudentCreateNestedManyWithoutTeacherInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutBooksInput = {
@@ -1174,6 +1216,7 @@ export type UserUncheckedCreateWithoutBooksInput = {
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutTeacherInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutBooksInput = {
@@ -1211,6 +1254,7 @@ export type UserUpdateWithoutBooksInput = {
   students?: Prisma.StudentUpdateManyWithoutTeacherNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBooksInput = {
@@ -1232,6 +1276,7 @@ export type UserUncheckedUpdateWithoutBooksInput = {
   students?: Prisma.StudentUncheckedUpdateManyWithoutTeacherNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMaterialsInput = {
@@ -1253,6 +1298,7 @@ export type UserCreateWithoutMaterialsInput = {
   students?: Prisma.StudentCreateNestedManyWithoutTeacherInput
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMaterialsInput = {
@@ -1274,6 +1320,7 @@ export type UserUncheckedCreateWithoutMaterialsInput = {
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutTeacherInput
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMaterialsInput = {
@@ -1311,6 +1358,7 @@ export type UserUpdateWithoutMaterialsInput = {
   students?: Prisma.StudentUpdateManyWithoutTeacherNestedInput
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMaterialsInput = {
@@ -1332,6 +1380,111 @@ export type UserUncheckedUpdateWithoutMaterialsInput = {
   students?: Prisma.StudentUncheckedUpdateManyWithoutTeacherNestedInput
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutLoansInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagCreateNestedManyWithoutCreatedByInput
+  students?: Prisma.StudentCreateNestedManyWithoutTeacherInput
+  books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
+  attendance?: Prisma.AttendanceCreateNestedManyWithoutTeacherInput
+  materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutLoansInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: string | null
+  banned?: boolean | null
+  banReason?: string | null
+  banExpires?: Date | string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutCreatedByInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutCreatedByInput
+  students?: Prisma.StudentUncheckedCreateNestedManyWithoutTeacherInput
+  books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
+  attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTeacherInput
+  materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutLoansInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLoansInput, Prisma.UserUncheckedCreateWithoutLoansInput>
+}
+
+export type UserUpsertWithoutLoansInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLoansInput, Prisma.UserUncheckedUpdateWithoutLoansInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLoansInput, Prisma.UserUncheckedCreateWithoutLoansInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLoansInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLoansInput, Prisma.UserUncheckedUpdateWithoutLoansInput>
+}
+
+export type UserUpdateWithoutLoansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUpdateManyWithoutCreatedByNestedInput
+  students?: Prisma.StudentUpdateManyWithoutTeacherNestedInput
+  books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
+  attendance?: Prisma.AttendanceUpdateManyWithoutTeacherNestedInput
+  materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLoansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banned?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  banReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  banExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutCreatedByNestedInput
+  students?: Prisma.StudentUncheckedUpdateManyWithoutTeacherNestedInput
+  books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
+  attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+  materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutAttendanceInput = {
@@ -1353,6 +1506,7 @@ export type UserCreateWithoutAttendanceInput = {
   students?: Prisma.StudentCreateNestedManyWithoutTeacherInput
   books?: Prisma.BookCreateNestedManyWithoutCreatedByInput
   materials?: Prisma.MaterialCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAttendanceInput = {
@@ -1374,6 +1528,7 @@ export type UserUncheckedCreateWithoutAttendanceInput = {
   students?: Prisma.StudentUncheckedCreateNestedManyWithoutTeacherInput
   books?: Prisma.BookUncheckedCreateNestedManyWithoutCreatedByInput
   materials?: Prisma.MaterialUncheckedCreateNestedManyWithoutCreatedByInput
+  loans?: Prisma.LoanUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAttendanceInput = {
@@ -1411,6 +1566,7 @@ export type UserUpdateWithoutAttendanceInput = {
   students?: Prisma.StudentUpdateManyWithoutTeacherNestedInput
   books?: Prisma.BookUpdateManyWithoutCreatedByNestedInput
   materials?: Prisma.MaterialUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendanceInput = {
@@ -1432,6 +1588,7 @@ export type UserUncheckedUpdateWithoutAttendanceInput = {
   students?: Prisma.StudentUncheckedUpdateManyWithoutTeacherNestedInput
   books?: Prisma.BookUncheckedUpdateManyWithoutCreatedByNestedInput
   materials?: Prisma.MaterialUncheckedUpdateManyWithoutCreatedByNestedInput
+  loans?: Prisma.LoanUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 
@@ -1448,6 +1605,7 @@ export type UserCountOutputType = {
   books: number
   attendance: number
   materials: number
+  loans: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1459,6 +1617,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   books?: boolean | UserCountOutputTypeCountBooksArgs
   attendance?: boolean | UserCountOutputTypeCountAttendanceArgs
   materials?: boolean | UserCountOutputTypeCountMaterialsArgs
+  loans?: boolean | UserCountOutputTypeCountLoansArgs
 }
 
 /**
@@ -1527,6 +1686,13 @@ export type UserCountOutputTypeCountMaterialsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.MaterialWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLoansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LoanWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1548,6 +1714,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   books?: boolean | Prisma.User$booksArgs<ExtArgs>
   attendance?: boolean | Prisma.User$attendanceArgs<ExtArgs>
   materials?: boolean | Prisma.User$materialsArgs<ExtArgs>
+  loans?: boolean | Prisma.User$loansArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1603,6 +1770,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   books?: boolean | Prisma.User$booksArgs<ExtArgs>
   attendance?: boolean | Prisma.User$attendanceArgs<ExtArgs>
   materials?: boolean | Prisma.User$materialsArgs<ExtArgs>
+  loans?: boolean | Prisma.User$loansArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1619,6 +1787,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     books: Prisma.$BookPayload<ExtArgs>[]
     attendance: Prisma.$AttendancePayload<ExtArgs>[]
     materials: Prisma.$MaterialPayload<ExtArgs>[]
+    loans: Prisma.$LoanPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2034,6 +2203,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   books<T extends Prisma.User$booksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$booksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendance<T extends Prisma.User$attendanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   materials<T extends Prisma.User$materialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  loans<T extends Prisma.User$loansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$loansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2656,6 +2826,30 @@ export type User$materialsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.MaterialScalarFieldEnum | Prisma.MaterialScalarFieldEnum[]
+}
+
+/**
+ * User.loans
+ */
+export type User$loansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Loan
+   */
+  select?: Prisma.LoanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Loan
+   */
+  omit?: Prisma.LoanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LoanInclude<ExtArgs> | null
+  where?: Prisma.LoanWhereInput
+  orderBy?: Prisma.LoanOrderByWithRelationInput | Prisma.LoanOrderByWithRelationInput[]
+  cursor?: Prisma.LoanWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LoanScalarFieldEnum | Prisma.LoanScalarFieldEnum[]
 }
 
 /**
