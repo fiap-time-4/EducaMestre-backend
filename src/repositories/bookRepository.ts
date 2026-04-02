@@ -126,5 +126,26 @@ export class BookRepository {
     return bookResult;
   }
 
-  async countRemainingBooksById(id: string): Promise<void> {}
+  async countRemainingBooksById(id: string): Promise<number> {
+    const book = await prisma.book.findUnique({
+      where: {
+        id
+      }
+     });
+
+    if (!book) {
+      throw new Error("Book not found");
+    }
+
+    const activeLoansCount = await prisma.loan.count({
+      where: {
+        itemId: id,
+        itemType: "BOOK",
+        status: "ACTIVE"
+      }
+    });
+
+    const remainingBooks = book.quantity - activeLoansCount;
+    return remainingBooks;
+  }
 }

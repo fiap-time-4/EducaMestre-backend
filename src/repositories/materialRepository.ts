@@ -126,5 +126,26 @@ export class MaterialRepository {
     return materialResult;
   }
 
-  async countRemainingMaterialsById(id: string): Promise<void> {}
+  async countRemainingMaterialsById(id: string): Promise<number> {
+    const material = await prisma.material.findUnique({
+      where: {
+        id
+      }
+
+      });
+
+    if (!material) {
+      throw new Error("Material not found");
+    }
+
+    const activeLoansCount = await prisma.loan.count({
+      where: {
+        itemId: id,
+        itemType: "MATERIAL",
+        status: "ACTIVE"
+      }
+     });
+
+    return material.quantity - activeLoansCount;
+  }
 }

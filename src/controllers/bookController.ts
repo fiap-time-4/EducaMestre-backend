@@ -98,4 +98,18 @@ export class BookController {
       throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
+
+  public countRemainingBooks = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { id } = req.params;
+      const idSchema = z.string().min(1, "ID is required");
+      const parsedId = idSchema.parse(id);
+      const remainingBooks = await this.bookRepository.countRemainingBooksById(parsedId);
+      return res.status(200).json({ remainingBooks });
+    }
+      catch (error) {
+        console.error("Error counting remaining books:", error);
+        throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
+      }
+    }
 }

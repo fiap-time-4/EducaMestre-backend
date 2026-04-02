@@ -35,7 +35,7 @@ export class MaterialController {
     try {
       const { skip, take, id } = req.query;
       const createdById = req.user.id;
-      
+
       const getOptions = {
         skip: skip ? parseInt(skip as string, 10) : undefined,
         take: take ? parseInt(take as string, 10) : undefined,
@@ -98,4 +98,20 @@ export class MaterialController {
       throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
     }
   }
+
+  public countRemainingMaterials = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { id } = req.params;
+      const idSchema = z.string().min(1, "ID is required");
+      const parsedId = idSchema.parse(id);
+      const remainingCount = await this.materialRepository.countRemainingMaterialsById(parsedId);
+      return res.status(200).json({ remainingCount });
+    }
+
+    catch (error) {
+      console.error("Error counting remaining materials:", error);
+      throw new AppError(error instanceof Error ? error.message : "Internal Server Error", 500);
+    }
+  }
+
 }
