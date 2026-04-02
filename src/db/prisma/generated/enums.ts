@@ -9,6 +9,14 @@
 * 🟢 You can import this file directly.
 */
 
+export const NoteType = {
+  REMINDER: 'REMINDER',
+  NOTE: 'NOTE'
+} as const
+
+export type NoteType = (typeof NoteType)[keyof typeof NoteType]
+
+
 export const ItemType = {
   BOOK: 'BOOK',
   MATERIAL: 'MATERIAL'

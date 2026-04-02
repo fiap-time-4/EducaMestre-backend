@@ -28,6 +28,7 @@ export type NoteMinAggregateOutputType = {
   id: string | null
   content: string | null
   date: Date | null
+  type: $Enums.NoteType | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -37,6 +38,7 @@ export type NoteMaxAggregateOutputType = {
   id: string | null
   content: string | null
   date: Date | null
+  type: $Enums.NoteType | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -46,6 +48,7 @@ export type NoteCountAggregateOutputType = {
   id: number
   content: number
   date: number
+  type: number
   createdById: number
   createdAt: number
   updatedAt: number
@@ -57,6 +60,7 @@ export type NoteMinAggregateInputType = {
   id?: true
   content?: true
   date?: true
+  type?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -66,6 +70,7 @@ export type NoteMaxAggregateInputType = {
   id?: true
   content?: true
   date?: true
+  type?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -75,6 +80,7 @@ export type NoteCountAggregateInputType = {
   id?: true
   content?: true
   date?: true
+  type?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -157,6 +163,7 @@ export type NoteGroupByOutputType = {
   id: string
   content: string
   date: Date
+  type: $Enums.NoteType
   createdById: string
   createdAt: Date
   updatedAt: Date
@@ -187,6 +194,7 @@ export type NoteWhereInput = {
   id?: Prisma.StringFilter<"Note"> | string
   content?: Prisma.StringFilter<"Note"> | string
   date?: Prisma.DateTimeFilter<"Note"> | Date | string
+  type?: Prisma.EnumNoteTypeFilter<"Note"> | $Enums.NoteType
   createdById?: Prisma.StringFilter<"Note"> | string
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
@@ -197,6 +205,7 @@ export type NoteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   content?: Prisma.SortOrder
   date?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -210,6 +219,7 @@ export type NoteWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.NoteWhereInput | Prisma.NoteWhereInput[]
   content?: Prisma.StringFilter<"Note"> | string
   date?: Prisma.DateTimeFilter<"Note"> | Date | string
+  type?: Prisma.EnumNoteTypeFilter<"Note"> | $Enums.NoteType
   createdById?: Prisma.StringFilter<"Note"> | string
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
@@ -220,6 +230,7 @@ export type NoteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   content?: Prisma.SortOrder
   date?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -235,6 +246,7 @@ export type NoteScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Note"> | string
   content?: Prisma.StringWithAggregatesFilter<"Note"> | string
   date?: Prisma.DateTimeWithAggregatesFilter<"Note"> | Date | string
+  type?: Prisma.EnumNoteTypeWithAggregatesFilter<"Note"> | $Enums.NoteType
   createdById?: Prisma.StringWithAggregatesFilter<"Note"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Note"> | Date | string
@@ -244,6 +256,7 @@ export type NoteCreateInput = {
   id?: string
   content: string
   date: Date | string
+  type?: $Enums.NoteType
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutNotesInput
@@ -253,6 +266,7 @@ export type NoteUncheckedCreateInput = {
   id?: string
   content: string
   date: Date | string
+  type?: $Enums.NoteType
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -262,6 +276,7 @@ export type NoteUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutNotesNestedInput
@@ -271,6 +286,7 @@ export type NoteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -280,6 +296,7 @@ export type NoteCreateManyInput = {
   id?: string
   content: string
   date: Date | string
+  type?: $Enums.NoteType
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -289,6 +306,7 @@ export type NoteUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -297,6 +315,7 @@ export type NoteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -316,6 +335,7 @@ export type NoteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   content?: Prisma.SortOrder
   date?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -325,6 +345,7 @@ export type NoteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   content?: Prisma.SortOrder
   date?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -334,6 +355,7 @@ export type NoteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   content?: Prisma.SortOrder
   date?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -381,10 +403,15 @@ export type NoteUncheckedUpdateManyWithoutCreatedByNestedInput = {
   deleteMany?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
 }
 
+export type EnumNoteTypeFieldUpdateOperationsInput = {
+  set?: $Enums.NoteType
+}
+
 export type NoteCreateWithoutCreatedByInput = {
   id?: string
   content: string
   date: Date | string
+  type?: $Enums.NoteType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -393,6 +420,7 @@ export type NoteUncheckedCreateWithoutCreatedByInput = {
   id?: string
   content: string
   date: Date | string
+  type?: $Enums.NoteType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -430,6 +458,7 @@ export type NoteScalarWhereInput = {
   id?: Prisma.StringFilter<"Note"> | string
   content?: Prisma.StringFilter<"Note"> | string
   date?: Prisma.DateTimeFilter<"Note"> | Date | string
+  type?: Prisma.EnumNoteTypeFilter<"Note"> | $Enums.NoteType
   createdById?: Prisma.StringFilter<"Note"> | string
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
@@ -439,6 +468,7 @@ export type NoteCreateManyCreatedByInput = {
   id?: string
   content: string
   date: Date | string
+  type?: $Enums.NoteType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -447,6 +477,7 @@ export type NoteUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -455,6 +486,7 @@ export type NoteUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -463,6 +495,7 @@ export type NoteUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  type?: Prisma.EnumNoteTypeFieldUpdateOperationsInput | $Enums.NoteType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -473,6 +506,7 @@ export type NoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   content?: boolean
   date?: boolean
+  type?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -483,6 +517,7 @@ export type NoteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   content?: boolean
   date?: boolean
+  type?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -493,6 +528,7 @@ export type NoteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   content?: boolean
   date?: boolean
+  type?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -503,12 +539,13 @@ export type NoteSelectScalar = {
   id?: boolean
   content?: boolean
   date?: boolean
+  type?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type NoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "content" | "date" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["note"]>
+export type NoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "content" | "date" | "type" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["note"]>
 export type NoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -528,6 +565,7 @@ export type $NotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     content: string
     date: Date
+    type: $Enums.NoteType
     createdById: string
     createdAt: Date
     updatedAt: Date
@@ -958,6 +996,7 @@ export interface NoteFieldRefs {
   readonly id: Prisma.FieldRef<"Note", 'String'>
   readonly content: Prisma.FieldRef<"Note", 'String'>
   readonly date: Prisma.FieldRef<"Note", 'DateTime'>
+  readonly type: Prisma.FieldRef<"Note", 'NoteType'>
   readonly createdById: Prisma.FieldRef<"Note", 'String'>
   readonly createdAt: Prisma.FieldRef<"Note", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Note", 'DateTime'>
