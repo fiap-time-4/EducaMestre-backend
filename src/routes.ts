@@ -5,6 +5,7 @@ import { studentRoutes } from "./routes/studentRoutes";
 import { attendanceRoutes} from "./routes/attendanceRoutes";
 import { bookRoutes } from "./routes/boookRoutes";
 import { materialRoutes } from "./routes/materialRoutes";
+import { loanRoutes } from "./routes/loanRoutes";
 
 const routes = Router();
 
@@ -20,6 +21,7 @@ routes.use("/students", studentRoutes());
 routes.use("/attendances", attendanceRoutes());
 routes.use("/books", bookRoutes());
 routes.use("/materials", materialRoutes());
+routes.use("/loans", loanRoutes());
 
 
 export default routes;
