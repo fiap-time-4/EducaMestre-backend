@@ -144,7 +144,12 @@ export class LoanRepository {
         studentId
       },
       include: {
-        student: true,
+        student: {
+          include: {
+            tag: true
+          },
+        },
+        
       }
     });
 
