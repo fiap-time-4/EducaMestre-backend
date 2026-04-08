@@ -10,7 +10,22 @@ interface GetOptions {
   studentId?: string;
 }
 
+interface GetDatetimeDate {
+  gte: Date;
+  lte: Date;
+}
+
 export class AttendanceRepository {
+
+  getDayDate(date: Date): GetDatetimeDate {
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    return { gte: startOfDay, lte: endOfDay };
+  }
 
   async verifyAttendanceExists(attendanceId?: string, studentId?: string, teacherId?: string, date?: Date): Promise<boolean> {
 
@@ -19,7 +34,7 @@ export class AttendanceRepository {
           id: attendanceId,
           studentId,
           teacherId,
-          date
+          date: date ? this.getDayDate(date) : undefined
         }
     });
 
@@ -92,7 +107,7 @@ export class AttendanceRepository {
       where: {
         id ,
         teacherId,
-        date,
+        date: date ? this.getDayDate(date) : undefined,
         studentId
       }
     });
@@ -101,7 +116,7 @@ export class AttendanceRepository {
       where: {
         id ,
         teacherId,
-        date,
+        date: date ? this.getDayDate(date) : undefined,
         studentId
       }
     });
