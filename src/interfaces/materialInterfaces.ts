@@ -4,6 +4,7 @@ interface Material {
   description: string;
   quantity: number;
   createdById: string;
+  remainingQuantity?: number;
 }
 
 interface ReturnMaterial {

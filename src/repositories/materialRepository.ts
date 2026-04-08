@@ -10,6 +10,29 @@ interface GetOptions {
 
 export class MaterialRepository {
 
+  async getRemainingQuantity(id: string): Promise<number> {
+    const material = await prisma.material.findUnique({
+      where: {
+        id
+      }
+    });
+
+    if (!material) {
+      throw new Error("Material not found");
+    }
+
+    const activeLoansCount = await prisma.loan.count({
+      where: {
+        itemId: id,
+        itemType: "MATERIAL",
+        status: "ACTIVE"
+      }
+    });
+
+    const remainingMaterials = material.quantity - activeLoansCount;
+    return remainingMaterials;
+  }
+
   async verifyMaterialExists(id: string): Promise<boolean> {
 
     const existingMaterial = await prisma.material.findUnique({
@@ -66,13 +89,14 @@ export class MaterialRepository {
       }
     });
 
-    let materials: Material[] | Material | null = fetchedMaterials.map(material => ({
+    let materials: Material[] | Material | null = await Promise.all(fetchedMaterials.map(async material => ({
       id: material.id,
       name: material.name,
       description: material.description,
       quantity: material.quantity,
-      createdById: material.createdById
-    }));
+      createdById: material.createdById,
+      remainingQuantity: await this.getRemainingQuantity(material.id)
+    })));
 
     materials = Array.isArray(materials) && materials.length === 1 ? materials[0] : materials;
     materials = Array.isArray(materials) && materials.length === 0 ? null : materials;

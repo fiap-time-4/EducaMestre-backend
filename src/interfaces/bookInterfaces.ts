@@ -4,6 +4,7 @@ interface Book {
   author: string;
   quantity: number;
   createdById: string;
+  remainingQuantity?: number;
 }
 
 interface ReturnBook {

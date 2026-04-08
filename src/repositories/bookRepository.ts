@@ -10,6 +10,29 @@ interface GetOptions {
 
 export class BookRepository {
 
+  async getRemainingQuantity(id: string): Promise<number> {
+    const book = await prisma.book.findUnique({
+      where: {
+        id
+      }
+    });
+
+    if (!book) {
+      throw new Error("Book not found");
+    }
+
+    const activeLoansCount = await prisma.loan.count({
+      where: {
+        itemId: id,
+        itemType: "BOOK",
+        status: "ACTIVE"
+      }
+    });
+
+    const remainingBooks = book.quantity - activeLoansCount;
+    return remainingBooks;
+  }
+
   async verifyBookExists(id: string): Promise<boolean> {
 
     const existingBook = await prisma.book.findUnique({
@@ -66,13 +89,14 @@ export class BookRepository {
       }
     });
 
-    let books: Book[] | Book | null = fetchedBooks.map(book => ({
+    let books: Book[] | Book | null = await Promise.all(fetchedBooks.map(async book => ({
       id: book.id,
       title: book.title,
       author: book.author,
       quantity: book.quantity,
-      createdById: book.createdById
-    }));
+      createdById: book.createdById,
+      remainingQuantity: await this.getRemainingQuantity(book.id)
+    })));
 
     books = Array.isArray(books) && books.length === 1 ? books[0] : books;
     books = Array.isArray(books) && books.length === 0 ? null : books;
